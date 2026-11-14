@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile Cards</title>
 
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: blue;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: white;
+            width: 250px;
+            padding: 20px;
+            margin: 10px;
+            border: 2px solid blue;
+            border-radius: 10px;
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
+
+        .card:hover {
+            background-color: #f0f0f0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Profile Cards</h1>
+
+    <div class="container">
+
+        <div class="card">
+            <img src="t-39853_1280.png">
+            <h2>Tushar</h2>
+            <p>BSc Computer Science Student</p>
+            <p>Skills: HTML, CSS, Python</p>
+            <button onclick="showProfile('Tushar')">
+                View Profile
+            </button>
+            <p id="profile1"></p>
+        </div>
+
+        <div class="card">
+            <img src="G.jpg">
+            <h2>Gautam</h2>
+            <p>Web Development Learner</p>
+            <p>Skills: HTML, CSS, JavaScript</p>
+            <button onclick="showProfile('Gautam')">
+                View Profile
+            </button>
+            <p id="profile2"></p>
+        </div>
+
+        <div class="card">
+            <img src="J.jpg">
+            <h2>Jenish</h2>
+            <p>Computer Science Student</p>
+            <p>Skills: Python, SQL, HTML</p>
+            <button onclick="showProfile('Jenish')">
+                View Profile
+            </button>
+            <p id="profile3"></p>
+        </div>
+
+    </div>
+
+    <script>
+
+        function showProfile(name) {
+
+            if (name == "Tushar") {
+                document.getElementById("profile1").innerHTML =
+                "Hello! Welcome to Tushar's Profile.";
+            }
+
+            else if (name == "Gautam") {
+                document.getElementById("profile2").innerHTML =
+                "Hello! Welcome to Gautam's Profile.";
+            }
+
+            else {
+                document.getElementById("profile3").innerHTML =
+                "Hello! Welcome to Jenish's Profile.";
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
