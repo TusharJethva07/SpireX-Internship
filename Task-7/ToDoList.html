@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My To-Do List</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid blue;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 10px;
+            width: 60%;
+        }
+
+        button {
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
+
+        li {
+            text-align: left;
+            margin: 10px;
+            padding: 8px;
+            background-color: #eeeeee;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .delete {
+            background-color: red;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                width: 90%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>My To-Do List</h1>
+
+        <input type="text" id="taskInput"
+        placeholder="Enter your task">
+
+        <button onclick="addTask()">Add Task</button>
+
+        <ul id="taskList"></ul>
+
+        <p id="message"></p>
+
+    </div>
+
+    <script>
+
+        function addTask() {
+
+            let input = document.getElementById("taskInput");
+            let task = input.value;
+
+            if (task == "") {
+                document.getElementById("message").innerHTML =
+                "Please enter a task.";
+                return;
+            }
+
+            let li = document.createElement("li");
+
+            li.innerHTML = task;
+
+            li.onclick = function() {
+                li.classList.toggle("completed");
+            };
+
+            let btn = document.createElement("button");
+
+            btn.innerHTML = "Delete";
+            btn.className = "delete";
+
+            btn.onclick = function(event) {
+                event.stopPropagation();
+                li.remove();
+            };
+
+            li.appendChild(btn);
+
+            document.getElementById("taskList").appendChild(li);
+
+            input.value = "";
+            document.getElementById("message").innerHTML = "";
+        }
+
+        document.getElementById("taskInput").addEventListener(
+            "keypress", function(event) {
+                if (event.key == "Enter") {
+                    addTask();
+                }
+            }
+        );
+
+    </script>
+
+</body>
+</html>
