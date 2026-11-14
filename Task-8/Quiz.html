@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Quiz App</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .quiz {
+            background-color: white;
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid blue;
+            border-radius: 10px;
+        }
+
+        .question {
+            text-align: left;
+            margin: 15px;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
+
+        @media (max-width: 500px) {
+            .quiz {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="quiz">
+
+        <h1>My Quiz App</h1>
+
+        <form id="quizForm">
+
+            <div class="question">
+                <p>1. Which language is used to style a webpage?</p>
+                <input type="radio" name="q1" value="HTML"> HTML<br>
+                <input type="radio" name="q1" value="CSS"> CSS<br>
+                <input type="radio" name="q1" value="Python"> Python
+            </div>
+
+            <div class="question">
+                <p>2. What does HTML stand for?</p>
+                <input type="radio" name="q2" value="Hyper Text Markup Language">
+                Hyper Text Markup Language<br>
+                <input type="radio" name="q2" value="High Text"> High Text<br>
+                <input type="radio" name="q2" value="Home Tool"> Home Tool
+            </div>
+
+            <div class="question">
+                <p>3. Which language adds interaction to webpages?</p>
+                <input type="radio" name="q3" value="CSS"> CSS<br>
+                <input type="radio" name="q3" value="JavaScript"> JavaScript<br>
+                <input type="radio" name="q3" value="HTML"> HTML
+            </div>
+
+            <div class="question">
+                <p>4. Which tag creates a paragraph?</p>
+                <input type="radio" name="q4" value="h1"> h1<br>
+                <input type="radio" name="q4" value="p"> p<br>
+                <input type="radio" name="q4" value="br"> br
+            </div>
+
+            <div class="question">
+                <p>5. Which tag creates a link?</p>
+                <input type="radio" name="q5" value="img"> img<br>
+                <input type="radio" name="q5" value="a"> a<br>
+                <input type="radio" name="q5" value="div"> div
+            </div>
+
+            <button type="button" id="submitBtn">Submit Quiz</button>
+            <button type="reset">Reset</button>
+
+        </form>
+
+        <h3 id="result"></h3>
+
+    </div>
+
+    <script>
+
+        document.getElementById("submitBtn").addEventListener(
+            "click", function() {
+
+                let score = 0;
+
+                let answers = {
+                    q1: "CSS",
+                    q2: "Hyper Text Markup Language",
+                    q3: "JavaScript",
+                    q4: "p",
+                    q5: "a"
+                };
+
+                for (let q in answers) {
+
+                    let selected = document.querySelector(
+                        'input[name="' + q + '"]:checked'
+                    );
+
+                    if (selected == null) {
+                        document.getElementById("result").innerHTML =
+                        "Please answer all questions.";
+                        return;
+                    }
+
+                    if (selected.value == answers[q]) {
+                        score++;
+                    }
+                }
+
+                document.getElementById("result").innerHTML =
+                "Your Score: " + score + "/5";
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
