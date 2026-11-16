@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Background Color Changer</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: white;
+            padding: 50px 15px;
+            transition: background-color 0.5s;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .yellow {
+            background-color: orange;
+        }
+
+        .reset {
+            background-color: black;
+        }
+
+        .random {
+            background-color: purple;
+        }
+
+        @media (max-width: 600px) {
+            button {
+                width: 80%;
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Background Color Changer</h1>
+
+        <p id="colorName">Selected Color: White</p>
+
+        <button class="red" id="red">Red</button>
+        <button class="green" id="green">Green</button>
+        <button class="blue" id="blue">Blue</button>
+        <button class="yellow" id="yellow">Yellow</button>
+        <button class="random" id="random">Random Color</button>
+        <button class="reset" id="reset">Reset</button>
+
+    </div>
+
+    <script>
+        let body = document.body;
+        let colorName = document.getElementById("colorName");
+
+        document.getElementById("red").addEventListener("click", function() {
+            body.style.backgroundColor = "red";
+            colorName.innerText = "Selected Color: Red";
+        });
+
+        document.getElementById("green").addEventListener("click", function() {
+            body.style.backgroundColor = "green";
+            colorName.innerText = "Selected Color: Green";
+        });
+
+        document.getElementById("blue").addEventListener("click", function() {
+            body.style.backgroundColor = "blue";
+            colorName.innerText = "Selected Color: Blue";
+        });
+
+        document.getElementById("yellow").addEventListener("click", function() {
+            body.style.backgroundColor = "yellow";
+            colorName.innerText = "Selected Color: Yellow";
+        });
+
+        document.getElementById("random").addEventListener("click", function() {
+            let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+
+            body.style.backgroundColor = randomColor;
+            colorName.innerText = "Selected Color: " + randomColor;
+        });
+
+        document.getElementById("reset").addEventListener("click", function() {
+            body.style.backgroundColor = "white";
+            colorName.innerText = "Selected Color: White";
+        });
+    </script>
+
+</body>
+</html>
