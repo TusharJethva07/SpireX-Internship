@@ -1,0 +1,144 @@
+<html>
+<head>
+    <title>My Counter App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf2f8;
+            text-align: center;
+            padding: 50px 15px;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 400px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #count {
+            font-size: 60px;
+            margin: 25px;
+            color: green;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .increase {
+            background-color: green;
+        }
+
+        .decrease {
+            background-color: red;
+        }
+
+        .reset {
+            background-color: black;
+        }
+
+        .plus {
+            background-color: blue;
+        }
+
+        @media (max-width: 600px) {
+            button {
+                width: 80%;
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>My Counter App</h1>
+
+        <h2 id="count">0</h2>
+
+        <button class="increase" id="increase">
+            Increase
+        </button>
+
+        <button class="decrease" id="decrease">
+            Decrease
+        </button>
+
+        <button class="plus" id="plus">
+            +5
+        </button>
+
+        <button class="reset" id="reset">
+            Reset
+        </button>
+
+    </div>
+
+    <script>
+        let count = 0;
+
+        let display = document.getElementById("count");
+
+        function updateCounter() {
+            display.innerText = count;
+
+            if (count > 0) {
+                display.style.color = "green";
+            }
+            else if (count < 0) {
+                display.style.color = "red";
+            }
+            else {
+                display.style.color = "black";
+            }
+        }
+
+        document.getElementById("increase").addEventListener("click", function() {
+            count++;
+            updateCounter();
+        });
+
+        document.getElementById("decrease").addEventListener("click", function() {
+            if (count > 0) {
+                count--;
+            }
+            updateCounter();
+        });
+
+        document.getElementById("plus").addEventListener("click", function() {
+            count = count + 5;
+            updateCounter();
+        });
+
+        document.getElementById("reset").addEventListener("click", function() {
+            count = 0;
+            updateCounter();
+        });
+
+    </script>
+
+</body>
+</html>
