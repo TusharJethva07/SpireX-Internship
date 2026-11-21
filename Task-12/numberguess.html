@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Guessing Game</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf2f8;
+            text-align: center;
+            padding: 50px 15px;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 450px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 12px gray;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        input {
+            width: 70%;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .check {
+            background-color: #007bff;
+        }
+
+        .again {
+            background-color: green;
+        }
+
+        #message {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #score {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            input {
+                width: 85%;
+            }
+
+            button {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Guess the Number!</h1>
+
+        <p>Guess a number between 1 and 20.</p>
+
+        <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="20">
+
+        <br>
+
+        <button class="check" id="checkBtn">Check Guess</button>
+
+        <p id="message">Start guessing!</p>
+
+        <p id="attempts">Attempts Remaining: 5</p>
+
+        <p id="score">Score: 0</p>
+
+        <button class="again" id="againBtn" style="display:none;">
+            Play Again
+        </button>
+
+    </div>
+
+    <script>
+        let secretNumber;
+        let attempts;
+        let score = 0;
+        let gameOver = false;
+
+        let guessInput = document.getElementById("guessInput");
+        let message = document.getElementById("message");
+        let attemptsText = document.getElementById("attempts");
+        let scoreText = document.getElementById("score");
+        let checkBtn = document.getElementById("checkBtn");
+        let againBtn = document.getElementById("againBtn");
+
+        function startGame() {
+            secretNumber = Math.floor(Math.random() * 20) + 1;
+
+            attempts = 5;
+            gameOver = false;
+
+            guessInput.value = "";
+            guessInput.disabled = false;
+
+            message.innerText = "Start guessing!";
+            message.style.color = "#333";
+
+            attemptsText.innerText = "Attempts Remaining: " + attempts;
+
+            checkBtn.disabled = false;
+            againBtn.style.display = "none";
+        }
+
+        checkBtn.addEventListener("click", function() {
+
+            let guess = Number(guessInput.value);
+
+            if (guessInput.value === "" || guess < 1 || guess > 20) {
+                message.innerText = "Please enter a number between 1 and 20!";
+                message.style.color = "red";
+                return;
+            }
+
+            if (gameOver) {
+                return;
+            }
+
+            attempts--;
+
+            if (guess === secretNumber) {
+                message.innerText = "🎉 Correct! You Won!";
+                message.style.color = "green";
+
+                score = score + attempts + 1;
+                scoreText.innerText = "Score: " + score;
+
+                endGame();
+            }
+
+            else if (guess > secretNumber) {
+                message.innerText = "Too High! Try Again.";
+                message.style.color = "red";
+            }
+
+            else {
+                message.innerText = "Too Low! Try Again.";
+                message.style.color = "orange";
+            }
+
+            attemptsText.innerText = "Attempts Remaining: " + attempts;
+
+            if (attempts === 0 && guess !== secretNumber) {
+                message.innerText = "Game Over! Number was " + secretNumber;
+                message.style.color = "red";
+                endGame();
+            }
+
+            guessInput.value = "";
+        });
+
+        function endGame() {
+            gameOver = true;
+            guessInput.disabled = true;
+            checkBtn.disabled = true;
+            againBtn.style.display = "inline-block";
+        }
+
+        againBtn.addEventListener("click", function() {
+            startGame();
+        });
+
+        startGame();
+
+    </script>
+
+</body>
+</html>
