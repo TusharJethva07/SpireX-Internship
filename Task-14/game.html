@@ -1,0 +1,204 @@
+<html>
+<head>
+    <title>Rock Paper Scissors Game</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf2f8;
+            text-align: center;
+            padding: 40px 15px;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 500px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 12px gray;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .choices {
+            margin: 25px 0;
+        }
+
+        button {
+            padding: 15px 20px;
+            margin: 8px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            background-color: #007bff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        .score {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            font-size: 18px;
+        }
+
+        .restart {
+            background-color: red;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            button {
+                padding: 12px 15px;
+                font-size: 16px;
+            }
+
+            .score {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Rock Paper Scissors</h1>
+
+        <p>Choose your option!</p>
+
+        <div class="choices">
+
+            <button onclick="playGame('Rock')">
+                🪨 Rock
+            </button>
+
+            <button onclick="playGame('Paper')">
+                📄 Paper
+            </button>
+
+            <button onclick="playGame('Scissors')">
+                ✂️ Scissors
+            </button>
+
+        </div>
+
+        <h3 id="userChoice">Your Choice: -</h3>
+
+        <h3 id="computerChoice">Computer Choice: -</h3>
+
+        <p id="result">Let's Play!</p>
+
+        <div class="score">
+
+            <div>
+                <h3>You</h3>
+                <h2 id="userScore">0</h2>
+            </div>
+
+            <div>
+                <h3>Computer</h3>
+                <h2 id="computerScore">0</h2>
+            </div>
+
+        </div>
+
+        <button class="restart" onclick="restartGame()">
+            Restart Game
+        </button>
+
+    </div>
+
+    <script>
+
+        let userScore = 0;
+        let computerScore = 0;
+
+        let options = ["Rock", "Paper", "Scissors"];
+
+        function playGame(user) {
+
+            let randomNumber = Math.floor(Math.random() * 3);
+
+            let computer = options[randomNumber];
+
+            document.getElementById("userChoice").innerText =
+                "Your Choice: " + user;
+
+            document.getElementById("computerChoice").innerText =
+                "Computer Choice: " + computer;
+
+            let result = "";
+
+            if (user === computer) {
+
+                result = "🤝 It's a Draw!";
+
+            }
+
+            else if (
+                (user === "Rock" && computer === "Scissors") ||
+                (user === "Paper" && computer === "Rock") ||
+                (user === "Scissors" && computer === "Paper")
+            ) {
+
+                result = "🎉 You Win!";
+                userScore++;
+
+            }
+
+            else {
+
+                result = "😢 You Lose!";
+                computerScore++;
+
+            }
+
+            document.getElementById("result").innerText = result;
+
+            document.getElementById("userScore").innerText = userScore;
+
+            document.getElementById("computerScore").innerText = computerScore;
+
+        }
+
+        function restartGame() {
+
+            userScore = 0;
+            computerScore = 0;
+
+            document.getElementById("userScore").innerText = 0;
+
+            document.getElementById("computerScore").innerText = 0;
+
+            document.getElementById("userChoice").innerText =
+                "Your Choice: -";
+
+            document.getElementById("computerChoice").innerText =
+                "Computer Choice: -";
+
+            document.getElementById("result").innerText = "Let's Play!";
+
+        }
+
+    </script>
+
+</body>
+</html>
