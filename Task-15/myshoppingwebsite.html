@@ -20,13 +20,13 @@
         header {
             background: #222;
             color: white;
-            padding: 20px;
             text-align: center;
+            padding: 22px;
         }
 
         nav {
             background: #333;
-            padding: 12px;
+            padding: 14px;
             text-align: center;
         }
 
@@ -37,11 +37,11 @@
         }
 
         .cart-info {
-            background: #fff;
-            padding: 15px;
+            background: white;
             text-align: center;
-            font-size: 18px;
+            padding: 15px;
             font-weight: bold;
+            font-size: 18px;
         }
 
         .search-box {
@@ -82,8 +82,8 @@
 
         .product img {
             width: 100%;
-            height: 180px;
-            object-fit: cover;
+            height: 190px;
+            object-fit: contain;
             border-radius: 8px;
         }
 
@@ -193,52 +193,52 @@
 
     <h2 id="products">Our Products</h2>
 
-    <div class="products" id="productList">
+    <div class="products">
 
-        <div class="product" data-name="headphones">
+        <div class="product" data-name="bluetooth speaker">
             <img
-                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"
-                alt="Headphones"
+                src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"
+                alt="Bluetooth Speaker"
             >
-            <h3>Headphones</h3>
-            <p class="price">₹999</p>
-            <button onclick="addToCart('Headphones', 999)">
+            <h3>Bluetooth Speaker</h3>
+            <p class="price">₹1,299</p>
+            <button onclick="addToCart('Bluetooth Speaker', 1299)">
                 Add to Cart
             </button>
         </div>
 
-        <div class="product" data-name="smart watch">
+        <div class="product" data-name="smartphone">
             <img
-                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"
-                alt="Smart Watch"
+                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"
+                alt="Smartphone"
             >
-            <h3>Smart Watch</h3>
-            <p class="price">₹1499</p>
-            <button onclick="addToCart('Smart Watch', 1499)">
+            <h3>Smartphone</h3>
+            <p class="price">₹12,999</p>
+            <button onclick="addToCart('Smartphone', 12999)">
                 Add to Cart
             </button>
         </div>
 
-        <div class="product" data-name="shoes">
+        <div class="product" data-name="wireless mouse">
             <img
-                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"
-                alt="Shoes"
+                src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500"
+                alt="Wireless Mouse"
             >
-            <h3>Shoes</h3>
-            <p class="price">₹1999</p>
-            <button onclick="addToCart('Shoes', 1999)">
+            <h3>Wireless Mouse</h3>
+            <p class="price">₹499</p>
+            <button onclick="addToCart('Wireless Mouse', 499)">
                 Add to Cart
             </button>
         </div>
 
-        <div class="product" data-name="backpack">
+        <div class="product" data-name="keyboard">
             <img
-                src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500"
-                alt="Backpack"
+                src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500"
+                alt="Keyboard"
             >
-            <h3>Backpack</h3>
-            <p class="price">₹799</p>
-            <button onclick="addToCart('Backpack', 799)">
+            <h3>Keyboard</h3>
+            <p class="price">₹899</p>
+            <button onclick="addToCart('Keyboard', 899)">
                 Add to Cart
             </button>
         </div>
@@ -341,11 +341,8 @@
             products.forEach(product => {
                 let name = product.getAttribute("data-name");
 
-                if (name.includes(searchValue)) {
-                    product.style.display = "block";
-                } else {
-                    product.style.display = "none";
-                }
+                product.style.display =
+                    name.includes(searchValue) ? "block" : "none";
             });
         }
     </script>
